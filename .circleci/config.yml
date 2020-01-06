@@ -13,7 +13,7 @@ jobs:
       - run: ls
       - run:
           name: Build image docker
-          command: docker build -t larnico\nodejs-api_team11:latest docker/api/
+          command: docker build -t larnico\nodejs-api_team11:latest .
       - run:
           name: Archive image docker
           command: docker save -o sauv_image_docker.tar larnico\nodejs-api_team11
