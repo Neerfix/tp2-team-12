@@ -33,18 +33,14 @@ jobs:
     steps:
       - setup_remote_docker
       - run:
-          name: Publish Release on GitHub
+          name: test changelog
           command: |
               echo 'github'
-
 workflows:
   version: 2
   dev:
     jobs:
-      - install:
-        filters:
-          branches:
-            only: dev
+      - install
       - build_image:
           requires:
             - install
@@ -53,16 +49,10 @@ workflows:
               only: dev
   prod:
     jobs:
-      - install:
-            filters:
-              branches:
-                only: master
+      - install
       - build_image:
           requires:
             - install
-          filters:
-            branches:
-              only: master
       - update_changelog:
           requires:
             - build_image
