@@ -29,9 +29,3 @@ workflows:
           filters:
             branches:
               only: master
-      - publish_image:
-          requires:
-            - build_image
-          filters:
-            branches:
-              only: master
