@@ -5,27 +5,17 @@ executors:
     docker:
       - image: circleci/node:10
 jobs:
+  # Install
+  # Test
+  # Build && Publish
   build_image:
     executor: mypublisher
     steps:
       - checkout
       - setup_remote_docker
-      - run: ls
       - run:
           name: Build image docker
           command: docker build -f docker/api/Dockerfile -t larnico/nodejs-api_team11:latest .
-      - run:
-          name: Archive image docker
-          command: docker save -o sauv_image_docker.tar larnico/nodejs-api_team11
-  publish_image:
-    executor: mypublisher
-    steps:
-      - setup_remote_docker
-      - run: pwd
-      - run: ls
-      - run:
-          name: Recuperation archive docker
-          command: docker load -i sauv_image_docker.tar
       - run:
           name: Publication sur Docker Hub
           command:
