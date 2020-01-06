@@ -38,7 +38,7 @@ Basé sur le projet : https://github.com/YI-B3-Devops/tp2-notararigo-nicolas
     - [config.yml](./.circleci/config.yml) - Fichier de configuration de circleci
 - [docker](./docker/) - Contient les containers docker.
     - [docker-compose](./docker/docker-compose.yml) - docker compose du projet.
-        - [api](./docker/api/Dockerfile) - Dockerfile de NodeJs.
+        - [api](.circleci/api/Dockerfile) - Dockerfile de NodeJs.
         - [nginx](./docker/nginx/Dockerfile) - Dockerfile de Nginx.
             - [nginx.conf](./docker/nginx/nginx.conf) - configuration de Nginx.   
 
