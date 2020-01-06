@@ -38,8 +38,6 @@ jobs:
       - run:
           name: Publish Release on GitHub
           command: |
-              go get https://github.com/YI-B3-Devops/tp2-team-11
-              VERSION=$(my-binary --version)
               ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} .
 workflows:
   version: 2
@@ -57,19 +55,7 @@ workflows:
               only: master
   prod:
     jobs:
-      - install:
-          filters:
-            branches:
-              only: master
-      - build_image:
-          requires:
-            - install
-          filters:
-            branches:
-              only: master
       - github_release:
-          requires:
-            - build_image
           filters:
             tags:
               only: /[0-9]{1,}.[0-9]{1,}.[0-9]{1,}-*
