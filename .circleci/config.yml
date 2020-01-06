@@ -8,6 +8,20 @@ jobs:
   # Install
   # Test
   # Build && Publish
+  install:
+    executor: mypublisher
+    steps:
+      - checkout
+      - run:
+          - name: Install node
+            command: npm install
+  test:
+    executor: mypublisher
+    steps:
+      - checkout
+      - run:
+          - name: Test node
+            command: npm test
   build_image:
     executor: mypublisher
     steps:
@@ -25,6 +39,14 @@ workflows:
   version: 2
   build-master:
     jobs:
+      - install:
+          filters:
+            branches:
+              only: master
+      - test:
+        filters:
+          branches:
+            only: master
       - build_image:
           filters:
             branches:
