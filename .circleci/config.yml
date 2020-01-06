@@ -36,25 +36,21 @@ workflows:
         filters:
           branches:
             only: dev
-            ignore: master
       - build_image:
           requires:
             - install
           filters:
             branches:
               only: dev
-              ignore: master
   prod:
     jobs:
       - install:
         filters:
           branches:
             only: master
-            ignore: dev
       - build_image:
           requires:
             - install
           filters:
             branches:
               only: master
-              ignore: dev
