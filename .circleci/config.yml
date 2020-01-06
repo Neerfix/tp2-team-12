@@ -16,7 +16,7 @@ jobs:
           command: docker build -f docker/api/Dockerfile -t larnico/nodejs-api_team11:latest .
       - run:
           name: Archive image docker
-          command: docker save -o sauv_image_docker.tar larnico\nodejs-api_team11
+          command: docker save -o sauv_image_docker.tar larnico/nodejs-api_team11
   publish_image:
     executor: mypublisher
     steps:
