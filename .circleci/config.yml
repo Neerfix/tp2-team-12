@@ -1,8 +1,5 @@
 version: 2.1
 executors:
-  github-release:
-    docker:
-      - image: circleci/buildpack-deps:stretch
   mypublisher:
 #    working_directory: ~/repo
     docker:
@@ -32,7 +29,8 @@ jobs:
               echo "$DOCKERHUB_pwd" | docker login -u larnico --password-stdin
               docker push larnico/nodejs-api_team11:latest
   github_release:
-    executor: github-release
+    docker:
+      - image: circleci/golang:1.8
     steps:
       - setup_remote_docker
       - run:
