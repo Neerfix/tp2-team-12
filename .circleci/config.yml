@@ -13,15 +13,15 @@ jobs:
     steps:
       - checkout
       - run:
-          - name: Install node
-            command: npm install
+          name: Install node
+          command: npm install
   test:
     executor: mypublisher
     steps:
       - checkout
       - run:
-          - name: Test node
-            command: npm test
+          name: Test node
+          command: npm test
   build_image:
     executor: mypublisher
     steps:
