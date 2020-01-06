@@ -21,7 +21,8 @@ jobs:
     executor: mypublisher
     steps:
       - setup_remote_docker
-      - run: pwd | ls
+      - run: pwd
+      - run: ls
       - run:
           name: Recuperation archive docker
           command: docker load -i sauv_image_docker.tar
