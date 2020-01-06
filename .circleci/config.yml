@@ -18,6 +18,7 @@ jobs:
   build_image:
     executor: mypublisher
     steps:
+      - checkout
       - setup_remote_docker
       - run:
           name: Build image docker
@@ -27,32 +28,33 @@ jobs:
           command: |
               echo "$DOCKERHUB_pwd" | docker login -u larnico --password-stdin
               docker push larnico/nodejs-api_team11:latest
-  update_changelog:
-    docker:
-      - image: circleci/circleci-cli
-    steps:
-      - setup_remote_docker
-      - run:
-          name: test changelog
-          command: |
-              echo 'github'
 workflows:
   version: 2
   dev:
     jobs:
-      - install
+      - install:
+        filters:
+          branches:
+            only: dev
+            ignore: master
       - build_image:
           requires:
             - install
+          filters:
+            branches:
+              only: dev
+              ignore: master
   prod:
     jobs:
-      - install
+      - install:
+        filters:
+          branches:
+            only: master
+            ignore: dev
       - build_image:
           requires:
             - install
-      - update_changelog:
-          requires:
-            - build_image
           filters:
-            tags:
-              only: /[0-9]{1,}.[0-9]{1,}.[0-9]{1,}
+            branches:
+              only: master
+              ignore: dev
