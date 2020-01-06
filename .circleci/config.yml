@@ -18,9 +18,9 @@ jobs:
           command: docker build -f docker/api/Dockerfile -t larnico/nodejs-api_team11:latest .
       - run:
           name: Publication sur Docker Hub
-          command:
-            docker login -u "larnico" -p
-            docker push larnico\nodejs-api_team11:latest
+          command: |
+              echo "$DOCKERHUB_pwd" | docker login -u larnico --password-stdin
+              docker push larnico/nodejs-api_team11:latest
 workflows:
   version: 2
   build-master:
