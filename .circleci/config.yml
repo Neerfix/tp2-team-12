@@ -44,9 +44,6 @@ workflows:
       - build_image:
           requires:
             - install
-          filters:
-            branches:
-              only: dev
   prod:
     jobs:
       - install
@@ -57,8 +54,5 @@ workflows:
           requires:
             - build_image
           filters:
-            branches:
-              only: master
-              ignore: dev
             tags:
               only: /[0-9]{1,}.[0-9]{1,}.[0-9]{1,}
