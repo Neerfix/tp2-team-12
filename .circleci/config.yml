@@ -33,9 +33,9 @@ workflows:
   dev:
     jobs:
       - install:
-        filters:
-          branches:
-            only: dev
+          filters:
+            branches:
+              only: dev
       - build_image:
           requires:
             - install
